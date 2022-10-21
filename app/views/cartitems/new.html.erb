@@ -1,0 +1,14 @@
+
+<p>商品名<%= %></p>
+<p>価格</p>
+
+
+
+
+<%= form_for @cartitem , url: {action: :create} do |f| %>
+    <p><%= f.label :qty, '数量' %>
+    <%= f.text_field :qty %></p>
+ 
+     <%= f.submit '追加' %>
+     
+<% end %>

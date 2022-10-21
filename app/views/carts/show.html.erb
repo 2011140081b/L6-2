@@ -1,0 +1,14 @@
+<input type="hidden" <%= i=0 %>>
+<% @products.each do |e| %>
+<p><%= e.name %></p>
+<p><%= e.price %></p>
+<%= link_to '削除', "/products/#{e.id}", method: :delete %>
+<input type="hidden" <%= i += e.price %>>
+
+
+
+<% end %>
+<p>合計金額<%= i %>円</p>
+
+
+<p><%= link_to '商品を登録', '/products/new' %></p>
