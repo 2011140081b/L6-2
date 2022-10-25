@@ -1,6 +1,6 @@
 class CartitemsController < ApplicationController
     def new
-        @cartitem = Cartitem.new
+        @cartitem = Cartitem.new(product_id: params[:product_id])
     end
     
 
@@ -11,13 +11,14 @@ class CartitemsController < ApplicationController
         #logger.debug(product)
     
       
-        @cartitem = Cartitem.new(qty: params[:qty])
+        cart =Cartitem.new(qty: params[:cartitem][:qty],cart_id: current_cart.id, product_id: params[:cartitem][:product_id])
+        cart.save
         redirect_to '/carts/show'
     end
     
     def destroy
-        product = Product.find(params[:id])
-        product.uncartitem(current_cart)
-        redirect_to  '/top/main'
+        cartitem = Cartitem.find(params[:id])
+        cartitem.destroy
+        redirect_to  '/carts/show'
     end
 end

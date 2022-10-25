@@ -1,9 +1,10 @@
 メインページへようこそ
 <% @products.each do |e| %>
 <p><%= e.name %></p>
-<p><%= e.price %></p>
+<p><%= e.price %>円</p>
 <%= link_to '削除', "/products/#{e.id}", method: :delete %>
-<p><%= link_to 'カートに追加', '/cartitems/new/' %></p>
+
+<p><%= link_to 'カートに追加', new_cartitem_path(product_id: e.id) %></p>
  
 
 

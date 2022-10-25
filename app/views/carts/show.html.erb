@@ -1,9 +1,12 @@
 <input type="hidden" <%= i=0 %>>
-<% @products.each do |e| %>
-<p><%= e.name %></p>
-<p><%= e.price %></p>
-<%= link_to '削除', "/products/#{e.id}", method: :delete %>
-<input type="hidden" <%= i += e.price %>>
+<% @cartitems.each do |e| %>
+
+<p>商品名 : <%= Product.find(e.product_id).name %></p>
+<p<>価格 : <%= Product.find(e.product_id).price %>円</p>
+<p>数量 : <%= e.qty %></p>
+    
+<%= link_to '削除', "/cartitems/#{e.id}", method: :delete %>
+<input type="hidden" <%= i += e.qty * Product.find(e.product_id).price %>>
 
 
 
@@ -11,4 +14,4 @@
 <p>合計金額<%= i %>円</p>
 
 
-<p><%= link_to '商品を登録', '/products/new' %></p>
+<p><%= link_to '商品一覧へ', top_main_path %></p>
